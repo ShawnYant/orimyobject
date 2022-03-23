@@ -1,0 +1,56 @@
+{% extends "myadmin/base.html" %}
+
+
+{% block main_body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dish Category Management
+        <small>Order System Backstage Management</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Homepage</a></li>
+        <li class="active">Dish Category Management</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+                <h2 class="box-title"><span class="glyphicon glyphicon-calendar" aria-hidden="true">Add Category</h2>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" action="{% url 'myadmin_category_insert' %}" method="post">
+                {% csrf_token %}
+              <div class="box-body">
+                
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">CategoryName：</label>
+
+                  <div class="col-sm-4">
+                    <input type="text" name="name" class="form-control" id="inputText2" placeholder="CategoryName" />
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-primary">submit</button> &nbsp; 
+                  <button type="reset" class="btn btn-default">reset</button>
+                <div class="col-sm-offset-2 col-sm-10">
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+
+    </section>
+    <!-- /.content -->
+{% endblock %}

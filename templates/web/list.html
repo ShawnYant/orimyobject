@@ -1,0 +1,217 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order System</title>
+    <link rel="stylesheet" href="{% static 'web/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'web/css/common.css'%}">
+    <style type="text/css">
+        body{min-height:2000px;padding-top:70px;}
+
+        .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
+        .navbar-default .navbar-brand{color:#fff;}
+        .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
+            color: #fff;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+        .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
+            color:#fff;
+            background-color: #FF4500;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+
+        table tr td{font-size:11px;} 
+        table tr td.price{color:red;}
+        table tr td.num span{color:red;padding:0px 5px}
+        table tr td.num i{border-width:0px;background-color:#ddd;}  
+
+        div.shoplist div.bn{font-size:12px;line-height:25px;}
+        div.shoplist div.bn span.price{color:red;}
+
+        .container .panel .panel-heading{padding:0px 15px;line-height:40px;}
+        .container .panel .panel-heading a.btn{margin-top:5px;width:100px;float:right}
+
+        .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+            z-index: 3;
+            color: #fff;
+            cursor: default;
+            background-color: #ff8800;
+            border-color: #ff8800;
+        }
+    </style>
+</head>
+<body style="background-color: PapayaWhip ;">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">Fast Food Restaurant</span><span style="font-size:14px;"></span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li {% if request.GET.status == '1' %}class="active"{% endif %}><a href="{% url 'web_orders_index'  %}?status=1">Current Order</a></li> -->
+            <li {% if request.GET.status != '2' %}class="active"{% endif %}><a href="{% url 'web_orders_index' %}?status=1">Orders in progress</a></li>
+            <li {% if request.GET.status != '2' %}class="active"{% endif %}><a href="{% url 'web_orders_index' %}?status=3">Orders in preparation</a></li>
+            <li {% if request.GET.status != '2' %}class="active"{% endif %}><a href="{% url 'web_orders_index'  %}?status=4">History Orders</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"> {{request.session.webuser.nickname}}</a></li>
+            <li><a href="{% url 'web_orderhome_logout' %}">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> OrderList
+                    <a type="button" href="{{url}}"  class="btn btn-warning btn-sm">Refresh</a>
+                </div>
+                <table class="table table-striped">
+                        <tr>
+                            <th width="60">OrderID</th>
+                            <th></th>
+                            <th></th>
+                            <th>Amount</th>
+                            <th></th>
+                            <th>Customer Name</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Order Status</th>
+                            <th>Payment Status</th>
+                            <th>CheckOut Time</th>
+                            <th>Operation</th>
+                        </tr>
+                        {% for vo in orderslist %}
+                         <tr class="oid{{vo.id}}">
+                            <td>{{ vo.id }}</td>
+                            <td></td>
+                            <td>{{vo.nickname}}</td>
+                            <td class="price">{{vo.money}}</td>
+                            <td></td>
+                            <td>{{vo.name}}</td>
+                            <td>{{vo.address}}</td>
+                            <td>{{vo.phone_number}}</td>
+                            <td>
+                                {% if vo.status == 1 %}
+                                  <span style="color:green">In Progress</span>
+                                {% elif vo.status == 2 %}
+                                  <span style="color:blue">Invalid</span>
+                                {% elif vo.status == 3 %}
+                                  <span style="color:green">Ready</span>
+                                {% elif vo.status == 4 %}
+                                  <span style="color:blue">Deliverd</span>  
+                                {% else %}
+                                  <span style="color:blue">Invalid</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if vo.payment_status == 1 %}
+                                  <span style="color:red">Unpaid</span>
+                                {% elif vo.payment_status == 2 %}
+                                  <span style="color:green">Paid</span>
+                                {% elif vo.payment_status == 3 %}
+                                  <span style="color:red">Refunded</span>
+                                {% else %}
+                                  <span style="color:red">Unknown</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ vo.create_at|date:'Y-m-d H:i:s' }}</td>
+                            <td>
+                                <button type="button" onclick="doShow({{vo.id}})" class="btn btn-warning btn-xs" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detail</button>
+                               
+                                <button type="button" onclick="window.location.href='{% url 'web_orders_status' vo.id%} '"  
+                                    class="btn btn-info btn-xs" role="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ready</button>  
+
+                                <!-- <button type="button" onclick="this.style.visibility='hidden';window.location.href='{% url 'web_orders_status2' vo.id%} '"  
+                                    class="btn btn-info btn-xs" role="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Delivered</button>  -->
+
+                                <button type="button" onclick="doChangeStatus({{vo.id}},4)" class="btn btn-danger btn-xs" role="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Delivered</button>
+
+
+                            </td>
+                         </tr>
+                        {% endfor %}
+                </table> 
+
+               
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Order Detail</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-hover">
+               
+               
+                
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'web/js/jquery.min.js'%}"></script>
+    <script src="{% static 'web/js/bootstrap.min.js'%}"></script>
+    <script type="text/javascript">
+        function doShow(id){
+            $.ajax({
+                type:'get',
+                url:"{% url 'web_orders_detail' %}",
+                dataType:'text',
+                data:{oid:id},
+                async: false,
+                success:function(res){
+                    $("#myModal div.modal-body").empty().append(res);
+                    $('#myModal').modal({keyboard:false})
+                },
+            });
+        }
+        function doChangeStatus(id,s){
+            var info = ["","","","","Are you sure you want to make it delieverd？"];
+            if(window.confirm(info[s])){
+                $.get("{% url 'web_orders_status_deliever' %}",{oid:id,status:s},function(data){
+                    if(data == "Y"){
+                         $("tr.oid"+id).remove();
+                        pass
+                    }else{
+                        alert("Order Processing Failure！");
+                    }
+                },'text');
+            }
+        }
+     
+
+
+
+    </script>
+</body>
+</html>

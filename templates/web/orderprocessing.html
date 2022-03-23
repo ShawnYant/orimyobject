@@ -1,0 +1,146 @@
+
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{% static 'myadmin/bower_components/bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'myadmin/bower_components/Ionicons/css/ionicons.min.css'%}">
+    <link rel="stylesheet" href="{% static 'dist/css/skins/skin-blue.min.css'%}">
+    <link rel="stylesheet" href="{% static 'myadmin/dist/css/AdminLTE.min.css'%}">
+    <style type="text/css">
+        body{min-height:2000px;padding-top:70px;}
+
+        .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
+        .navbar-default .navbar-brand{color:#fff;}
+        .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
+            color: #fff;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+        .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
+            color:#fff;
+            background-color: #FF4500;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+        
+        table tr td{font-size:11px;} 
+        table tr td.price{color:red;}
+        table tr td.num span{color:red;padding:0px 5px}
+        table tr td.num i{border-width:0px;background-color:#ddd;}  
+
+        div.shoplist div.bn{font-size:12px;line-height:25px;}
+        div.shoplist div.bn span.price{color:red;}
+    </style>
+</head>
+<body  style="background-color: PapayaWhip ;">
+    
+    <!-- Header navigation Begins-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">Fast Food Restaurant</span><span style="font-size:14px;">（Catherine Street）</span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"> {{request.session.webuser.nickname}}</a></li>
+            <li><a href="{% url 'web_orderhome_logout' %}">Log Out</a></li>
+          </ul>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <!-- Header navigation ends -->
+
+    <!-- Page body start -->
+    <div class="content container-fluid">
+      
+      <div class="column">
+        <br /><br />
+        <br /><br />
+        <br /><br />
+        <div class="col-lg-4 col-xs-4">
+         
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h1>Orders in progress<sup style="font-size: 50px"></sup></h1>
+              <br />
+              <br /><br />
+              <br /> 
+            </div>
+             <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div> 
+            <!-- <a href="{% url 'web_orders_index'  %}?status=1" class="small-box-footer">GO <i class="fa fa-arrow-circle-right"></i></a> -->
+            <a href="{% url 'web_orders_index'  %}?status=1" class="small-box-footer">GO <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-xs-4">
+         
+          <!-- small box -->
+          <div class="small-box bg-orange">
+            <div class="inner">
+              <h1>Orders in ready<sup style="font-size: 50px"></sup></h1>
+              <br />
+              <br /><br />
+              <br /> 
+            </div>
+             <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div> 
+            <!-- <a href="{% url 'web_orders_index'  %}?status=1" class="small-box-footer">GO <i class="fa fa-arrow-circle-right"></i></a> -->
+            <a href="{% url 'web_orders_index'  %}?status=3" class="small-box-footer">GO <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-xs-4">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+            
+
+              <h1>History Order<sup style="font-size: 50px"></sup></h1>
+  
+              <br />
+              <br /><br />
+              <br />
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="{% url 'web_orders_index'  %}?status=4" class="small-box-footer">GO <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+
+      </div>
+  
+    </div>
+
+    <script src="{% static 'web/js/jquery.min.js' %}"></script>
+    <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+ 
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+{% extends "myadmin/base.html" %}
+
+{% block main_body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dish Category Management
+        <small>Order System Backstage Management</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Homepage</a></li>
+        <li class="active">Dish Category Management</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title"><i class="fa fa-calendar"></i> Dish Category Information Table</h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>ID</th>
+                 
+                  <th>CategoryName</th>
+                  <th>Current Status</th>
+                  <th>Add Time</th>
+                  <th>Update Time</th>
+                  <th>Operation</th>
+                </tr>
+                {% for vo in categorylist %}
+                <tr>
+                  <td>{{ vo.id }}</td>
+                  <!-- <td>{{ vo.shopname }}</td> -->
+                  <td>{{ vo.name }}</td>
+                  <td>
+                    {% if vo.status == 1 %}
+                      <span style="color:green">Valid</span>
+                    {% elif vo.status == 9 %}
+                      <span style="color:red">Deleted</span>
+                    {% else %}
+                      <span style="color:red">Invalid</span>
+                    {% endif %}
+                  </td>
+                  <td width="12%">{{ vo.create_at|date:'Y-m-d' }}</td>
+                  <td width="12%">{{ vo.update_at|date:'Y-m-d' }}</td>
+                  <td width="25%">
+
+                 
+
+                    <button type="button" onclick="doDel('{% url 'myadmin_category_delete' vo.id %}')" class="btn btn-danger btn-xs">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+
+              
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <a role="button" href="{% url 'myadmin_category_add' %}" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Dish Categories</a>
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="{% url 'myadmin_category_index' pIndex|add:-1 %}?{{mywhere|join:'&'}}">&laquo;</a></li>
+                    {% for p in plist %}
+                    <li {% if p == pIndex %}class="active"{% endif %}><a href="{% url 'myadmin_category_index' p %}?{{mywhere|join:'&'}}">{{p}}</a></li>
+                    {% endfor %}
+                    <li><a href="{% url 'myadmin_category_index' pIndex|add:1 %}?{{mywhere|join:'&'}}">&raquo;</a></li>
+                </ul>
+            </div>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+
+    </section>
+    <!-- /.content -->
+{% endblock %}

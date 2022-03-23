@@ -1,0 +1,63 @@
+{% extends 'myadmin/base.html' %}
+
+{% block main_body%}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Home Page
+        <small>Order System Backend Management</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+      </ol>
+    </section>
+  
+    <!-- Main content -->
+    <section class="content container-fluid">
+      <div class="col-lg-2 col-xs-4">
+       
+      </div>
+     
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-10 col-xs-8">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>Employee Management</h3>
+              <br />
+              <br /><br />
+              <br />
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="{% url 'myadmin_user_index' 1 %}" class="small-box-footer">GO <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-10 col-xs-8">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>Dish Management<sup style="font-size: 20px"></sup></h3>
+  
+              <br />
+              <br /><br />
+              <br />
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="{% url 'myadmin_product_index' 1 %}" class="small-box-footer">GO <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+
+      </div>
+  
+    </section>
+    <!-- /.content -->
+
+{% endblock %}

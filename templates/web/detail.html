@@ -1,0 +1,18 @@
+<table class="table table-hover">
+    <tr>
+        <th>Id</th>
+        <th>DishName</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Sub-Total</th>
+    </tr>
+    {% for vo in detaillist %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ vo.product_name }}</td>
+        <td>{{ vo.price }}</td>
+        <td>{{ vo.quantity }}</td>
+        <td>{% widthratio  vo.price 1 vo.quantity %}</td>
+    </tr>
+    {% endfor %}
+</table>
