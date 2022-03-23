@@ -1,50 +1,69 @@
-{% comment %} {#login/templates/login/register.html#}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>注册界面</title>
+<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+<link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+<style type="text/css">
+.bk{
+  background-image: url({% static 'images/2.jpg'%});
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+</style>
+<body class="bk">
+	{% if errors %}
+		<div class="ui warning message">
+						<i class="close icon"></i>
+						<div class="header">status: </div>
+						{% for error in errors %}
+						 {{error}}
+						 {% endfor %}</div>
 
-{% extends 'login/base.html' %}
+	{% endif %}
 
-{% block title %}Register{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="col-md-4 col-md-offset-4">
-          <form class='form-register' action="/register/" method="post">
+<div class="register-container">
+	<h1>ShareLink</h1>
 
-              {% if message %}
-                  <div class="alert alert-warning">{{ message }}</div>
-              {% endif %}
+	<div class="connect">
+		<p>Link the world. Share to world.</p>
+	</div>
 
-              {% csrf_token %}
+	<form action="regist" method="post" id="registerForm">
+		{% csrf_token %}
+		<div>
+			<input type="text" name="username" class="username" placeholder="您的用户名" autocomplete="off"id="username"/>
+		</div>
+		<div>
+			<input type="password" name="password" class="password" placeholder="输入密码" oncontextmenu="return false" onpaste="return false" id="password"/>
+		</div>
+		<div>
+			<input type="password" name="confirm_password" class="confirm_password" placeholder="再次输入密码" oncontextmenu="return false" onpaste="return false"id="confirm_password" />
+		</div>
+		<div>
+			<input type="text" name="phone" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="phone"/>
+		</div>
+		<div>
+			<input type="email" name="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false"id="email " />
+		</div>
 
-              <h2 class="text-center">Welcome</h2>
-              <div class="form-group">
-                  {{ register_form.username.label_tag }}
-                  {{ register_form.username}}
-              </div>
-              <div class="form-group">
-                  {{ register_form.password1.label_tag }}
-                  {{ register_form.password1 }}
-              </div>
-              <div class="form-group">
-                  {{ register_form.password2.label_tag }}
-                  {{ register_form.password2 }}
-              </div>
-              <div class="form-group">
-                  {{ register_form.email.label_tag }}
-                  {{ register_form.email }}
-              </div>
-              <div class="form-group">
-                  {{ register_form.sex.label_tag }}
-                  {{ register_form.sex }}
-              </div>
-              <div class="form-group">
-                  {{ register_form.captcha.errors }}
-                  {{ register_form.captcha.label_tag }}
-                  {{ register_form.captcha }}
-              </div>
+		<button id="submit" type="submit">submit</button>
+	</form>
+	
 
-              <button type="reset" class="btn btn-default pull-left">reset</button>
-              <button type="submit" class="btn btn-primary pull-right">submit</button>
+</div>
 
-          </form>
-        </div>
-    </div> <!-- /container -->
-{% endblock %} {% endcomment %}
+
+<script src="{% static 'js/jquery.min.js'%}"></script>
+<script src="{% static 'js/common.js'%}"></script>
+<!--背景图片自动更换-->
+<script src="{% static 'js/supersized.3.2.7.min.js'%}"></script>
+<script src="{% static 'js/supersized-init.js'%}"></script>
+<!--表单验证-->
+<script src="{% static 'js/jquery.validate.min.js?var1.14.0'%}"></script>
+
+</body>
+</html>
