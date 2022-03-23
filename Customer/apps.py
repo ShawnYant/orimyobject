@@ -1,5 +1,5 @@
-from django.apps import AppConfig
+# from django.apps import AppConfig
 
 
-class CustomerConfig(AppConfig):
-    name = 'Customer'
+# class CustomerConfig(AppConfig):
+#     name = 'Customer'
