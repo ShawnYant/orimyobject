@@ -1,6 +1,6 @@
 #The child route of the web management system
 from django.urls import path,include
-from web.views import index,cart
+from web.views import index,cart, registration
 from web.views import orders
 from web.views import orderhome
 
@@ -29,13 +29,11 @@ urlpatterns = [
     path('orders/status2/<str:pid>', orders.status2, name="web_orders_status2"), 
     path('orders/status3', orders.status3, name="web_orders_status_deliever"), 
 
+    path('regist',registration.regist, name="web_registration_regist"),
 
     path("order/",include([
         path('order', orderhome.webindex,name="web_orders_homepage"),
+      ]))
 
-    ]))
-
-
-
-
+      
 ]

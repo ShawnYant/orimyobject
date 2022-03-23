@@ -27,6 +27,6 @@ urlpatterns = [
     
     path('myadmin/',include('myadmin.urls')), #back-end management
     #path(user login and registration)
-    #path('customer',include('Customer.urls')),
+    #path('customer',include('web.urls')),
    
 ]
