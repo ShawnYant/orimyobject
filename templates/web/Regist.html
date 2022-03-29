@@ -1,70 +1,141 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>注册界面</title>
-<link rel="stylesheet" href="{% static 'css/style.css'%}" />
-<link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
-<style type="text/css">
-.bk{
-  background-image: url({% static 'images/2.jpg'%});
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-</style>
-<body class="bk">
-	{% if errors %}
-		<div class="ui warning message">
-						<i class="close icon"></i>
-						<div class="header">status: </div>
-						{% for error in errors %}
-						 {{error}}
-						 {% endfor %}</div>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'web/css/common.css' %}">
+  <style type="text/css">
+      body{min-height:2000px;padding-top:70px;}
 
-	{% endif %}
+      .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
+      .navbar-default .navbar-brand{color:#fff;}
+      .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
+          color: #fff;
+          width:100px;
+          font-size:14px;
+          text-align:center;
+      }
+      .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
+          color:#fff;
+          background-color: #FF4500;
+          width:100px;
+          font-size:14px;
+          text-align:center;
+      }
+      
+      table tr td{font-size:11px;} 
+      table tr td.price{color:red;}
+      table tr td.num span{color:red;padding:0px 5px}
+      table tr td.num i{border-width:0px;background-color:#ddd;}  
 
-<div class="register-container">
-	<h1>ShareLink</h1>
+      div.shoplist div.bn{font-size:12px;line-height:25px;}
+      div.shoplist div.bn span.price{color:red;}
+  </style>
+</head>
+<body style="background-color: PapayaWhip ;">
+  <!-- Header navigation Begins-->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">（Medber）</span><span style="font-size:14px;">（Montreal）</span></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+<!-- 
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Order Now</a></li>
 
-	<div class="connect">
-		<p>Link the world. Share to world.</p>
-	</div>
+          <li><a href="#about">Order In Production</a></li>
+          <li><a href="#contact">History Order</a></li>
 
-	<form action="regist" method="post" id="registerForm">
-		{% csrf_token %}
-		<div>
-			<input type="text" name="username" class="username" placeholder="您的用户名" autocomplete="off"id="username"/>
-		</div>
-		<div>
-			<input type="password" name="password" class="password" placeholder="输入密码" oncontextmenu="return false" onpaste="return false" id="password"/>
-		</div>
-		<div>
-			<input type="password" name="confirm_password" class="confirm_password" placeholder="再次输入密码" oncontextmenu="return false" onpaste="return false"id="confirm_password" />
-		</div>
-		<div>
-			<input type="text" name="phone" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="phone"/>
-		</div>
-		<div>
-			<input type="email" name="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false"id="email " />
-		</div>
+        </ul> -->
 
-		<button id="submit" type="submit">submit</button>
-	</form>
-	
+        <!-- <ul class="nav navbar-nav navbar-right">
+          <li><a href="../navbar/">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"> {{request.session.webuser.nickname}}</a></li>
+      
+        </ul> -->
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <!-- Header navigation ends -->
 
-</div>
+  <!-- Page body start -->
+  <div class="container">
+      <div class="col-md-4">
+        <div class="container">
+          <h1 class="form-heading">registration</h1>
+          <div class="register-form">
+              <div class="main-div">
+                  <div class="panel">
+                      <h2 style="font-size:25px;">Welcome and registration</h2>
+                  </div>
+                  <form action="{% url 'web_registration_regist' %}" method="post">
+                      {% csrf_token %}
+                      <!-- <div class="form-group">
+                          <select name="shop_id" class="form-control">
+                              <option value="0"> - - shop selection - - </option>
+                          </select>
+                            </div> -->
+                      <div class="form-group">
+                          <input type="text" name="username" class="form-control"  placeholder="Account">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" name="pass" class="form-control" placeholder="Password">
+                      </div>
+                      <div class="form-group">
+                        <input type="confirm_password" name="pass" class="form-control" placeholder="Confirm_password">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="email" class="form-control"  placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="phone" class="form-control"  placeholder="Phone">
+                      </div>
+                      
+                      <button type="submit" style="margin-top:20px" class="btn btn-primary">submit</button>
+                      
+                      <div class="form-group">
+                          <p class="login-box-msg" style="color:red">
+                              {% if request.GET.errinfo == '1' %}
+                                  none！
+                              {% elif request.GET.errinfo == '2' %}
+                                 Verification code error！
+                              {% elif request.GET.errinfo == '3' %}
+                                 The login account does not exist!
+                              {% elif request.GET.errinfo == '4' %}
+                                  Invalid login account！
+                              {% elif request.GET.errinfo == '5' %}
+                                  Incorrect login password！
+                              {% endif %}
+                          </p>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      
+      <script src="{% static 'web/js/jquery.min.js' %}"></script>
+      <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+      <div class="col-md-8">
+          <!--TAB contents-->
+        {% for key,category in categorylist %}  
+          <h5 style="padding-bottom:9px;border-bottom:1px solid #eee;color:#BB3D00"><span class="glyphicon glyphicon-list" aria-hidden="true"> {{ category.name }}：</h5>
+            <div class="row shoplist">
+            </div>
+        {% endfor %}
+      </div>
+  </div>
+  <!-- Page body end -->
 
-
-<script src="{% static 'js/jquery.min.js'%}"></script>
-<script src="{% static 'js/common.js'%}"></script>
-<!--背景图片自动更换-->
-<script src="{% static 'js/supersized.3.2.7.min.js'%}"></script>
-<script src="{% static 'js/supersized-init.js'%}"></script>
-<!--表单验证-->
-<script src="{% static 'js/jquery.validate.min.js?var1.14.0'%}"></script>
-
-</body>
-</html>
+  <script src="{% static 'web/js/jquery.min.js' %}"></script>
+  <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+  <script>
+<html>

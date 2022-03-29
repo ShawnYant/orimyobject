@@ -1,4 +1,4 @@
-import email
+# import email
 from django.db import models
 from datetime import datetime
 
@@ -11,7 +11,7 @@ class cus(models.Model):
     status = models.IntegerField(default=1)    #Status:1:Available/2:Disabled/6:System Administrator/9:Delete
     create_at = models.DateTimeField(default=datetime.now)    #creat time
     update_at = models.DateTimeField(default=datetime.now)    #update time
-    email = models.EmailField(unique= True) # EMAIL
+    # email = models.EmailField(unique= True) # EMAIL
     address = models.CharField(max_length=100)   #customer address
     phoneNo = models.CharField(max_length=10)  #customer phone number
     def toDict(self):

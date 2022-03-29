@@ -36,3 +36,6 @@ class ShopMiddleware:
 
 
         return response
+
+
+        

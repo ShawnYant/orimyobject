@@ -93,3 +93,4 @@ def update(request,cid=0):
         print(err)
         context = {'info':" Update Failed!！"}
     return render(request,"myadmin/info.html",context)
+    

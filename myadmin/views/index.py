@@ -95,3 +95,4 @@ def verify(request):
     im.save(buf, 'png')
     
     return HttpResponse(buf.getvalue(), 'image/png')
+    

@@ -160,3 +160,5 @@ def update(request,pid=0):
             os.remove("./static/uploads/product/"+cover_pic)
 
     return render(request,"myadmin/info.html",context)
+    
+    
