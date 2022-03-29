@@ -102,7 +102,7 @@
                       
                       <button type="submit" style="margin-top:20px" class="btn btn-primary">submit</button>
                       
-                      <div class="form-group">
+                      {% comment %} <div class="form-group">
                           <p class="login-box-msg" style="color:red">
                               {% if request.GET.errinfo == '1' %}
                                   none！
@@ -116,7 +116,7 @@
                                   Incorrect login password！
                               {% endif %}
                           </p>
-                      </div>
+                      </div> {% endcomment %}
                   </form>
               </div>
           </div>

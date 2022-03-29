@@ -1,6 +1,7 @@
 #The child route of the web management system
 from django.urls import path,include
-from web.views import index,cart, registration
+from myadmin.views import registration
+from web.views import index,cart
 from web.views import orders
 from web.views import orderhome
 
