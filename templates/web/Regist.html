@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Register</title>
   <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'web/css/common.css' %}">
   <style type="text/css">
@@ -36,7 +36,7 @@
 <body style="background-color: PapayaWhip ;">
   <!-- Header navigation Begins-->
   <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+    <div class="container" >
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -68,14 +68,14 @@
   <!-- Header navigation ends -->
 
   <!-- Page body start -->
-  <div class="container">
-      <div class="col-md-4">
-        <div class="container">
-          <h1 class="form-heading">registration</h1>
-          <div class="register-form">
-              <div class="main-div">
+  <div class="container" >
+      <div >
+        <div  style="margin-top:10px;">
+          <!-- <h1 class="form-heading">registration</h1> -->
+          <div >
+              <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
                   <div class="panel">
-                      <h2 style="font-size:25px;">Welcome and registration</h2>
+                      <h2 style="font-size:26px;">Registration</h2>
                   </div>
                   {% comment %} <form action="{% url 'myadmin_registration_regist' %}" method="post"> {% endcomment %}
                      
@@ -86,24 +86,16 @@
                             </div> -->
                       <form action="{% url 'myadmin_registration_doregist' %}" method="post">
                         {% csrf_token %}
-                      <div class="form-group">
-                          <input type="text" name="username" class="form-control"  placeholder="Account">
-                      </div>
-                      <div class="form-group">
-                          <input type="password" name="password" class="form-control" placeholder="Password">
-                      </div>
-                      <div class="form-group">
-                        <input type="confirm_password" name="pass" class="form-control" placeholder="Confirm_password">
-                      </div>
-                      <div class="form-group">
-                        <input type="text" name="email" class="form-control"  placeholder="Email">
-                      </div>
-                      <div class="form-group">
-                        <input type="text" name="phoneNo" class="form-control"  placeholder="Phone">
-                      </div>
-                      
-                      <button type="submit" style="margin-top:20px" class="btn btn-primary">submit</button>
-                      
+                          <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
+                          <input type="password" name="password" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
+
+                        <input type="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
+
+                        <input type="text" name="email" style="height: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Email">
+
+                        <input type="text" name="phoneNo" style="height: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Phone">
+                      <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
+
                       {% comment %} <div class="form-group">
                           <p class="login-box-msg" style="color:red">
                               {% if request.GET.errinfo == '1' %}
