@@ -25,14 +25,15 @@ def dologin(request):
 
         #Obtain user information based on login account
         user = User.objects.get(username=request.POST['username'])
+        Word = request.POST['pass']
         #Check whether the current user is an administrator
         if user.status == 6:
             #identify whether the password is valid
-            import hashlib
-            md5 = hashlib.md5()
-            s = request.POST['pass']+user.password_salt #Get the password from the form and add an interference value
-            md5.update(s.encode('utf-8')) 
-            if user.password_hash == md5.hexdigest() :#get the value of MD5
+            # import hashlib
+            # md5 = hashlib.md5()
+            # s = request.POST['pass']+user.password_salt #Get the password from the form and add an interference value
+            # md5.update(s.encode('utf-8')) 
+            if Word == user.password :#get the value of MD5
                 print('login successfully!')
                 request.session['adminuser'] = user.toDict()
                 return redirect(reverse('myadmin_index'))

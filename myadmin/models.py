@@ -16,7 +16,7 @@ class User(models.Model):
 
     
     def toDict(self):
-        return {'id':self.id,'username':self.username,'nickname':self.nickname,'password':self.password,'email':self.email,'address':self.address,'phoneNo':self.phoneNo,'status':self.status,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
+        return {'id':self.id,'username':self.username,'nickname':self.nickname,'passwor':self.password,'email':self.email,'address':self.address,'phoneNo':self.phoneNo,'status':self.status,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
     class Meta:
         db_table = "user"  # change the name of the table
 

@@ -1,3 +1,4 @@
+from django.forms import PasswordInput
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -25,14 +26,16 @@ def dologin(request):
 
         #Obtain user information based on login account
         user = User.objects.get(username=request.POST['username'])
-        #Check whether the current user is valid or an administrator
+        Word = request.POST['pass']
+            #Check whether the current user is valid or an administrator
         if  user.status == 1 or user.status == 6:
             #identify whether the password is valid
-            import hashlib
-            md5 = hashlib.md5()
-            s = request.POST['pass']+user.password_salt #Get the password from the form and add an interference value
-            md5.update(s.encode('utf-8')) 
-            if user.password_hash == md5.hexdigest() :#get the value of MD5
+            # import hashlib
+            # md5 = hashlib.md5()
+            # s = request.POST['pass']+user.password_salt #Get the password from the form and add an interference value
+            # md5.update(s.encode('utf-8')) 
+            
+            if Word == user.password  :#get the value of MD5
                 print('login successfully!')
                 request.session['webuser'] = user.toDict()
                 return redirect(reverse('web_orders_homepage'))
