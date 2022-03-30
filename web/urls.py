@@ -30,7 +30,8 @@ urlpatterns = [
     path('orders/status2/<str:pid>', orders.status2, name="web_orders_status2"), 
     path('orders/status3', orders.status3, name="web_orders_status_deliever"), 
 
-    path('regist',registration.regist, name="web_registration_regist"),
+    path('doregist',registration.doregist, name="myadmin_registration_doregist"),
+    path('regist',registration.regist, name="myadmin_registration_regist"),
 
     path("order/",include([
         path('order', orderhome.webindex,name="web_orders_homepage"),
