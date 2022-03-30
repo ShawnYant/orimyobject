@@ -37,11 +37,12 @@ def insert(request):
        
         od.shop_id = 1
         od.member_id = 0
-        od.user_id =0
+        od.user_id = 0
         od.name = request.GET.get('customername', '')
         od.address = request.GET.get('address','')
         od.phone_number = request.GET.get('phonenumber','')
         od.money = request.session['total_money']
+        
         od.status = 1 #Order status :1 in processing /2 invalid /3 completed
         od.payment_status = 2 #Payment status :1 unpaid /2 paid /3 refunded
         od.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

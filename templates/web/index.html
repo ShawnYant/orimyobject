@@ -159,15 +159,21 @@
              alert("The customer information is not complete!");
              return;
           }
+          //Determine if the user is logined
+          i = request.session.webuser.id
+          if($("#customernameId").val()==i){
+            return;
+          }
+
 
           if(!window.confirm("Are you sure you want to settle？")){
             return;
           }
          
-          var bank = $("input[name='bank']:checked").val();
-          var customername = $("input[name='customername']").val();
-          var address = $("input[name='address']").val();
-          var phonenumber = $("input[name='phonenumber']").val();
+          #var bank = $("input[name='bank']:checked").val();
+          #var customername = $("input[name='customername']").val();
+          #var address = $("input[name='address']").val();
+          #var phonenumber = $("input[name='phonenumber']").val();
 
           
           $.ajax({
