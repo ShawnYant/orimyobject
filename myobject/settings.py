@@ -80,17 +80,17 @@ WSGI_APPLICATION = 'myobject.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'NAME': 'Python',
-        # 'USER': 'admin',
-        # 'PASSWORD': '6311admin',
-        # 'HOST': 'database-3.ciivyj7ykn79.us-east-1.rds.amazonaws.com',
-        # 'PORT': '3306',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'medber1',
-        'USER': 'root',
-        'PASSWORD': '123qwe',
-        'HOST': 'localhost',
+        'NAME': 'Python',
+        'USER': 'admin',
+        'PASSWORD': '6311admin',
+        'HOST': 'database-3.ciivyj7ykn79.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'medber1',
+        # 'USER': 'root',
+        # 'PASSWORD': '123qwe',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
      }
     
 }

@@ -3,37 +3,81 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{% static 'web/css/common.css' %}">
     <link rel="stylesheet" href="{% static 'web/css/bootstrap.css' %}">
+    <style type="text/css">
+        body{min-height:2000px;padding-top:70px;}
+  
+        .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
+        .navbar-default .navbar-brand{color:#fff;}
+        .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
+            color: #fff;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+        .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
+            color:#fff;
+            background-color: #FF4500;
+            width:100px;
+            font-size:14px;
+            text-align:center;
+        }
+        
+    </style>
 </head>
-<body>
-        <div class="container">
-        <h1 class="form-heading">login Form</h1>
-        <div class="login-form">
-            <div class="main-div">
+<body style="background-color: #FFEFD5;">
+    <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container" >
+          <div class="navbar-header">
+            <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button> -->
+            <a class="navbar-brand"  href="#">
+              <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">（Medber）</span><span style="font-size:14px;">（Montreal）</span></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+    <!-- 
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Order Now</a></li>
+    
+              <li><a href="#about">Order In Production</a></li>
+              <li><a href="#contact">History Order</a></li>
+    
+            </ul> -->
+    
+            <!-- <ul class="nav navbar-nav navbar-right">
+              <li><a href="../navbar/">
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"> {{request.session.webuser.nickname}}</a></li>
+          
+            </ul> -->
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+        <div class="container" style="margin-top:10px;" >
+        <!-- <h1 class="form-heading">login Form</h1> -->
+        <div >
+            <div class="main-div" style=" box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
                 <div class="panel">
-                    <h2 style="font-size:26px;">Order System</h2>
+                    <h2 style="font-size:26px;">Login</h2>
                 </div>
-                <form action="{% url 'web_orderhome_dologin' %}" method="post">
+                <form action="{% url 'web_orderhome_dologin' %}" method="post" >
                     {% csrf_token %}
                     <!-- <div class="form-group">
                         <select name="shop_id" class="form-control">
                             <option value="0"> - - shop selection - - </option>
                         </select>
                     </div> -->
-                    <div class="form-group">
-                        <input type="text" name="username" class="form-control"  placeholder="Account">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="pass" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="code" style="display:inline;width:120px;float:left;" class="form-control" placeholder="Verification Code">
-                        <img src="{% url 'web_orderhome_verify'%}" onclick="this.src='{% url 'web_orderhome_verify' %}?sn='+Math.random()" style="float:right;margin:5px 20px;" />
-                    </div>
-
-                    <button type="submit" style="margin-top:10px" class="btn btn-primary">Login</button>
+                        <input type="text" name="username" style="height:50px;margin-top: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
+                        <input type="password" name="pass" style="height:50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
+                        <input type="text" name="code" style="height:50px;display:inline;width:120px;float:left;" class="form-control" placeholder="Verification Code">
+                        <img src="{% url 'web_orderhome_verify'%}" onclick="this.src='{% url 'web_orderhome_verify' %}?sn='+Math.random()" style="float:right;margin:5px 35px;" />
+                    
+                    <button type="submit" style="width:100%;height:50px;margin-top:50px;" class="btn btn-primary" >Login</button>
                     
                     <div class="form-group">
                         <p class="login-box-msg" style="color:red">
@@ -51,6 +95,7 @@
                         </p>
                     </div>
                 </form>
+                <spam>Don't have an account?<a href="/regist"><spam>Register now</spam></a></spam>
             </div>
         </div>
     </div>
