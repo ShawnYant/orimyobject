@@ -14,8 +14,7 @@ urlpatterns = [
     path('dologin', orderhome.dologin,name="web_orderhome_dologin"),#perform the login 
     path('logout', orderhome.logout,name="web_orderhome_logout"),#perform the logout
     path('verify', orderhome.verify,name="web_orderhome_verify"),#output the verification code
-   
-    
+       
 
     path('cart/add/<str:pid>', cart.add , name="web_cart_add"), 
     path('cart/delete/<str:pid>', cart.delete , name="web_cart_delete"), 
