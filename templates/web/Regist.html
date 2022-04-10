@@ -44,7 +44,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'web_orders_homepage'%}">
           <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">（Medber）</span><span style="font-size:14px;">（Montreal）</span></a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
@@ -88,12 +88,9 @@
                         {% csrf_token %}
                           <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
                           <input type="password" name="password" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
-
-                        <input type="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
-
-                        <input type="text" name="email" style="height: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Email">
-
-                        <input type="text" name="phoneNo" style="height: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Phone">
+                          <input type="password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
+                          <input type="text" name="email" style="height: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Email">
+                          <input type="text" name="phoneNo" style="height: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Phone">
                       <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
 
                       {% comment %} <div class="form-group">

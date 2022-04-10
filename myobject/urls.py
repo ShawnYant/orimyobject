@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include 
 from web.views import orderhome
-
+from web.views import orders
 
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('',include('web.urls')), #Access the front page to order by default
     path('order/',orderhome.login),
+    path('orders/',orders.index),
     #path('order/',orderhome.index),
     
     path('myadmin/',include('myadmin.urls')), #back-end management
